@@ -1,0 +1,16 @@
+extends ../layouts/common
+block nav
+  include ../layouts/nav
+block content
+  a(href="/books/see" style='text-decoration: none; color: #c887c3') Back
+  h3 Update Title
+  form(action="/books/update", method="POST")
+    .form-group.row
+      lable.col-sm-2.col-form-label Title
+      .col-sm-10
+        input.form-control(type="text", name="title")
+    .form-group.row
+      label.col-sm-2.col-form-label Description
+      .col-sm-10
+        input.form-control(type="text", name="description")
+    button.btn.btn-primary(style='background-color: #c887c3; border-color: #c887c3;') Update

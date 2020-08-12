@@ -1,0 +1,20 @@
+extends ../layouts/common
+block nav
+  include ../layouts/nav
+block content
+  h3.py-3 Login
+  if errors
+   each error in errors
+    .alert.alert-danger= error
+    
+  form(action="/auth/loginUser", method="POST")
+    .form-group.row
+      label(for='email').col-sm-2.col-form-label Email
+      .col-sm-10
+        input#email.form-control(name="email", type="text", value=values ? values.email : "")
+    .form-group.row
+      label(for='password').col-sm-2.col-form-label Password
+      .col-sm-10
+        input#password.form-control(name="password", type="password", value=values ? values.password : "")
+    button.btn.btn-primary(style='background-color: #c887c3; border-color: #c887c3;') Login
+  

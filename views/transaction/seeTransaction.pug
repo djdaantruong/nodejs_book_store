@@ -1,0 +1,46 @@
+extends ../layouts/common
+block nav
+  include ../layouts/nav
+block content
+  a(href="/transaction/create" style="text-decoration: none; color: #c887c3") Create a new Transaction
+  h1.py-3 Transactions List
+  form(action="/transaction/search", method="GET", class="d-flex")
+    input(type="text", name="q", class="form-control mr-sm-2" placeholder="Search")
+    button.btn.btn-primary(style='background-color: #c887c3; border-color: #c887c3;')  Search
+  table.table
+    thead.thead-light
+      tr
+        th(scope="col") User Name
+        th(scope="col") Book
+        th(scope="col") Status
+    tbody
+    each obj in transactions 
+      tr
+        td=obj.user.name
+        td=obj.book.title
+        td
+          if !obj.isComplete
+            a(href=`/transaction/${obj.id}/complete` style="text-decoration: none; color: #c887c3") Complete
+          else
+            span(style="color: #7360e1") Completed
+            
+            
+            
+  .container
+      nav(aria-label='Page navigation').d-flex.justify-content-center
+        ul.pagination
+          - var pageTrans = 1;
+            li.page-item
+              a.page-link(href='/transaction/seeTransaction?pageTrans='+ parseInt(pageTrans - 1) style='color: #c887c3;') Previous
+            li.page-item
+              a.page-link(href='/transaction/seeTransaction?pageTrans='+ parseInt(pageTrans) style='color: #c887c3;') #{pageTrans}
+            li.page-item
+              a.page-link(href='/transaction/seeTransaction?pageTrans='+ parseInt(pageTrans + 1) style='color: #c887c3;') #{pageTrans + 1}
+            li.page-item
+              a.page-link(href='/transaction/seeTransaction?pageTrans='+ parseInt(pageTrans + 2) style='color: #c887c3;') #{pageTrans + 2}
+            li.page-item
+              a.page-link(href='/transaction/seeTransaction?pageTrans='+ parseInt(pageTrans + 1) style='color: #c887c3;') Next
+              
+  
+  a(href="/" style="text-decoration: none; color: #c887c3") Back
+

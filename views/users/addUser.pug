@@ -1,0 +1,25 @@
+extends ../layouts/common
+block nav
+  include ../layouts/nav
+block content
+  a(href="/users/seeUser" style='text-decoration: none; color: #c887c3') Back
+  h3.py-3 Create New User
+  if errors
+   each error in errors
+    .alert.alert-danger= error
+    
+  form(action="/users/addUser", method="POST", enctype="multipart/form-data")
+    .form-group.row
+      label.col-sm-2.col-form-label User Name
+      .col-sm-10
+        input.form-control(name = "name", type= "text", value=values ? values.name : "")
+    .form-group.row
+      label.col-sm-2.col-form-label Phone
+      .col-sm-10
+        input.form-control(name = "phone", type= "text", value=values ? values.phone : "")
+    .form-group.row
+      label(for='avatar').col-sm-2.col-form-label Avatar
+      .col-sm-10
+        input#avatar.form-control-file(name="avatar", type="file")
+        
+    button.btn.btn-primary(style='background-color: #c887c3; border-color: #c887c3;') Create

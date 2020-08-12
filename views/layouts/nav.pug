@@ -1,0 +1,17 @@
+nav.navbar.navbar-expand-sm.navbar-light.bg-light
+  a.navbar-brand(href='/')
+    img(src="https://cdn.glitch.com/375cd5ac-f9b9-440e-85ea-d48ffee0397d%2Flogobooks1.png?v=1589901741108", style="width: 2rem;")
+  a.navbar-brand(href='/') Books App
+  button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+  #navbarNav.collapse.navbar-collapse
+    ul.navbar-nav.ml-auto
+      li.nav-item
+        a.nav-link(href='/books/see') Books
+      li.nav-item
+        a.nav-link(href='/users/seeUser') Users
+      li.nav-item
+        a.nav-link(href='/transaction/seeTransaction') Transactions
+        
+  if user
+    p=user.name

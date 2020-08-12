@@ -1,0 +1,19 @@
+extends ../layouts/common
+block nav
+  include ../layouts/nav
+block content
+  a(href="/transaction/seeTransaction" style='text-decoration: none; color: #c887c3') Back
+  h3 Create a new Transaction
+  form(action="/transaction/create", method="POST")
+    label(for="users") Choose A User:
+    select.form-control.mb-3(id="users", name="user")
+      each user in users
+        option(value=user)
+         span=user.name
+    label(for="books") Choose A Book:
+    select.form-control(id="books", name="book")
+      each book in books
+        option(value=book)
+         span=book.title
+    br
+    button.btn.btn-primary(style='background-color: #c887c3; border-color: #c887c3;') Create
