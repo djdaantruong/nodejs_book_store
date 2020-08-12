@@ -1,0 +1,13 @@
+extends ../layouts/common
+block nav
+  include ../layouts/nav
+block content
+  a(href="/users/seeUser" style='text-decoration: none; color: #c887c3') Back
+  h3 Update Name
+  form(action="/users/update", method="POST")
+    .form-group.row
+      lable.col-sm-2.col-form-label New Name:
+      .col-sm-10
+        input.form-control(type="hidden", name="id", value=id)
+        input.form-control(type="text", name="name")
+    button.btn.btn-primary(style='background-color: #c887c3; border-color: #c887c3;') Update

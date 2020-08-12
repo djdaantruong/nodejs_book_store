@@ -1,0 +1,60 @@
+extends ../layouts/common
+block nav
+  include ../layouts/nav
+block content
+  a(href="/books/add" style="text-decoration: none; color: #c887c3") Create a new Book
+  h1 Books List
+  form(action="/books/search", method="GET", class="d-flex")
+    input(type="text", name="q", class="form-control mr-sm-2" placeholder="Search")
+    button.btn.btn-primary(style='background-color: #c887c3; border-color: #c887c3;')  Search
+    
+  .container
+      .pt-5.d-flex.flex-wrap
+        each book in books
+          .col-6.col-lg-3.my-2
+            .card
+              img.card-img-top(src='https://loremflickr.com/320/240')
+              .card-body
+                h5.card-title=book.title
+                p.card-text=book.description
+                a.btn.btn-primary(href="/books/" + book.id + "/update" style='background-color: #c887c3; border-color: #c887c3;') Update
+                a.btn.btn-primary(href="/books/" + book.title + "/delete" style='background-color: #c887c3; border-color: #c887c3;') Delete
+                
+  .container
+      nav(aria-label='Page navigation').d-flex.justify-content-center
+        ul.pagination
+          - var page = 1;
+            li.page-item
+              a.page-link(href='/books/see?page='+ parseInt(page - 1) style='color: #c887c3;') Previous
+            li.page-item
+              a.page-link(href='/books/see?page='+ parseInt(page) style='color: #c887c3;') #{page}
+            li.page-item
+              a.page-link(href='/books/see?page='+ parseInt(page + 1) style='color: #c887c3;') #{page + 1}
+            li.page-item
+              a.page-link(href='/books/see?page='+ parseInt(page + 2) style='color: #c887c3;') #{page + 2}
+            li.page-item
+              a.page-link(href='/books/see?page='+ parseInt(page + 1) style='color: #c887c3;') Next
+              
+              
+  //form(action="/books/search", method="GET", class="d-flex")
+    input(type="text", name="q", class="form-control mr-sm-2" placeholder="Search")
+    button.btn.btn-primary(style='background-color: #c887c3; border-color: #c887c3;')  Search
+  //table.table
+    thead.thead-light
+      tr
+        th(scope='col') Title
+        th(scope='col') Description
+        th(scope='col') 
+        th(scope='col') 
+    tbody
+      each book in books
+        tr
+          td=book.title
+          td=book.description
+          td
+            a(href="/books/" + book.id + "/update" style="text-decoration: none; color: #c887c3") Update
+          td
+            a(href="/books/" + book.title + "/delete" style="text-decoration: none; color: #c887c3") Delete
+  //a(href="/" style='text-decoration: none; color: #c887c3') Back
+
+      

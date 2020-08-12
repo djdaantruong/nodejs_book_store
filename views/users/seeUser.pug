@@ -1,0 +1,47 @@
+extends ../layouts/common
+block nav
+  include ../layouts/nav
+block content
+  a(href="/users/addUser" style="text-decoration: none; color: #c887c3") Create a new User
+  h1 Users List
+  form(action="/users/search", method="GET", class="d-flex")
+    input(type="text", name="q", class="form-control mr-sm-2" placeholder="Search")
+    button.btn.btn-primary(style='background-color: #c887c3; border-color: #c887c3;')  Search
+  table.table
+    thead.thead-light
+      tr
+        th(scope='col') Avatar
+        th(scope='col') User Name
+        th(scope='col') Phone
+        th(scope='col') 
+        th(scope='col') 
+    tbody
+      each user in users
+        tr
+          td
+            img(src="https://loremflickr.com/320/240", width="32")
+          td=user.name
+          td=user.phone
+          td
+            a(href="/users/" + user.id + "/update" style="text-decoration: none; color: #c887c3") Update
+          td
+            a(href="/users/" + user.name + "/delete" style="text-decoration: none; color: #c887c3") Delete
+            
+  
+  .container
+      nav(aria-label='Page navigation').d-flex.justify-content-center
+        ul.pagination
+          - var pageUser = 1;
+            li.page-item
+              a.page-link(href='/users/seeUser?pageUser='+ parseInt(pageUser - 1) style='color: #c887c3;') Previous
+            li.page-item
+              a.page-link(href='/users/seeUser?pageUser='+ parseInt(pageUser) style='color: #c887c3;') #{pageUser}
+            li.page-item
+              a.page-link(href='/users/seeUser?pageUser='+ parseInt(pageUser + 1) style='color: #c887c3;') #{pageUser + 1}
+            li.page-item
+              a.page-link(href='/users/seeUser?pageUser='+ parseInt(pageUser + 2) style='color: #c887c3;') #{pageUser + 2}
+            li.page-item
+              a.page-link(href='/users/seeUser?pageUser='+ parseInt(pageUser + 1) style='color: #c887c3;') Next
+              
+  
+  a(href="/" style='text-decoration: none; color: #c887c3') Back
